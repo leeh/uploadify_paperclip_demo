@@ -1,0 +1,4 @@
+  <div class="photo">
+    <%= image_tag photo.photo.url(:thumb) %><br>
+    <%=h photo.photo_file_name %> | <%= link_to 'Destroy', photo, :confirm => 'Are you sure?', :method => :delete %>
+  </div>

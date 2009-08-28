@@ -1,0 +1,57 @@
+<% 
+dialog_file_description = 'Photos'
+allowed_extensions = [:jpg, :jpeg, :gif, :png] 
+max_size = 20.megabyte
+allow_multiple_files = true
+url = photos_path
+%>
+<%- session_key_name = ActionController::Base.session_options[:key] -%>
+<% content_for :jstemplates do -%>
+<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+<script type="text/javascript" src="/javascripts/uploadify/swfobject.js"></script>
+<script type="text/javascript" src="/javascripts/uploadify/jquery.uploadify.v2.1.0.min.js"></script> 
+<script type="text/javascript">
+
+$(document).ready(function() {
+  $('#photo_photo').uploadify({
+    'method'        : 'get',
+    'uploader'      : '/javascripts/uploadify/uploadify.swf',
+    'script'        : '<%= url %>',
+    //'scriptAccess'  : 'always', // Uncomment this, if for some reason it doesn't work
+    'fileDataName'  : $('#photo_uploader input:file')[0].name, // Extract correct name of upload field from form field
+    'cancelImg'     : '/images/cancel.png',
+    'buttonText'    : 'Add Photos',
+    'fileDesc'      : '<%= dialog_file_description %> (<%= allowed_extensions.collect { |ext| "*.#{ext}" }.join(';') %>)',
+    'fileExt'       : '<%= allowed_extensions.collect { |ext| "*.#{ext}" }.join(';') %>',
+    'sizeLimit'     : <%= max_size %>,    
+    'multi'         : <%= allow_multiple_files %>,
+    'auto'          : true,
+    'onComplete'    : function(event, queueID, fileObj, response, data) { var data = eval('(' + response + ')');$.getScript(data.photo)},
+    'scriptData'  : {
+        'format': 'json', 
+        '<%= session_key_name %>' : encodeURIComponent('<%= u cookies[session_key_name] %>'),
+        'authenticity_token'  : encodeURIComponent('<%= u form_authenticity_token if protect_against_forgery? %>')
+    }    
+  });
+});
+</script>
+<% end -%>
+<h1>Listing photos</h1>
+
+<div class="photos">
+<% @photos.each do |photo| %>
+<%= render :partial => 'photo', :object => photo %>
+<% end %>
+</div>
+
+<br />
+
+<h1>New photo</h1>
+
+<% form_for(:photo, :html => { :multipart => true}) do |f| %>
+  <%= f.error_messages %>
+  <div id="photo_uploader">
+  <%= f.file_field :photo %>
+  </div>
+  <p><a href="javascript:jQuery('#uploadify').uploadifyClearQueue()">Cancel All Uploads</a></p>  
+<% end %>
