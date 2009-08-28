@@ -1,0 +1,16 @@
+= Uploadify/Paperclip
+
+This is a simple Rails (2.3.2) app that shows using Uploadify http://www.uploadify.com to upload multiple image files, using Paperclip to store them.
+
+I originally built this while testing it myself, and am putting it up since I didn't ever find a clear and complete example that worked in 2.3.2.
+
+== Setup
+
+It's a standard Rails app, nothing special.   The code does depend on the mime-types gem, so you will need to install that.
+
+== Thanks To:
+
+Thanks to several people, from whom I pulled bits of this from:
+* John Nunemaker http://railstips.org/2009/7/21/uploadify-and-rails23
+* Casper Fabricius http://casperfabricius.com/site/2009/03/26/uploading-multiple-files-with-progress-indicator-using-jquery-flash-and-rails/
+* Timmy Crawford http://timmyc.posterous.com/uploadify-on-rails-with-paperclip
