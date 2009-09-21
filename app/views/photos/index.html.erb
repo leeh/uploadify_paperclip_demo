@@ -16,7 +16,6 @@ photo_field = '#photo_photo'
 $(document).ready(function() {
 
   $('<%= photo_field %>').uploadify({
-    method        : 'get',
     uploader      : '/javascripts/uploadify/uploadify.swf',
     script        : '<%= url %>',
     fileDataName  : $('#photo_uploader input:file')[0].name, // Extract correct name of upload field from form field
