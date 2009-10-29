@@ -12,7 +12,6 @@
 ActiveRecord::Schema.define(:version => 20090825010514) do
 
   create_table "photos", :force => true do |t|
-    t.string   "name"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"

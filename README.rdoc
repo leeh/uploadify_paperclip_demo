@@ -1,8 +1,8 @@
 = Uploadify/Paperclip
 
-This is a simple Rails (2.3.2) app that shows using Uploadify http://www.uploadify.com to upload multiple image files, using Paperclip to store them.
+This is a simple Rails (2.3.4) app that shows using Uploadify http://www.uploadify.com to upload multiple image files, using Paperclip to store them.
 
-I originally built this while testing it myself, and am putting it up since I didn't ever find a clear and complete example that worked in 2.3.2.
+I originally built this while testing it myself, and am putting it up since I didn't ever find a clear and complete example that worked in 2.3.4.
 
 == Setup
 

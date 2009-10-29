@@ -3,3 +3,5 @@ Icon?
 ._*
 .swp
 *.log
+public/system/*
+db/development.sqlite3
